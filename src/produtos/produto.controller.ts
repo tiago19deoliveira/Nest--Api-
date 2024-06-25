@@ -1,20 +1,24 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
 import { Body, Controller, Get, Post, Put } from "@nestjs/common";
 import { produtoRepository } from "./produto.repository";
 
-@Controller('/produtos')
+@Controller('produtos')
     export class ProdutoController{
-        private produtoRepository = new produtoRepository;
+        constructor( private produtoRepository: produtoRepository){
+
+        }
 
         @Post ()
-        async cadastrarProduto(@Body()dadosDoProduto){
-            this.produtoRepository.salvar(dadosDoProduto)
-            return dadosDoProduto
+         cadastrarProduto(@Body()dadosDoProduto){
+         const produtoCadastrado = this.produtoRepository.salvar(dadosDoProduto)
+            return produtoCadastrado 
         }
 
         @Get ()
-        async listarProduto (){
-            return this.produtoRepository.listar();
+         listarProduto (){
+            return this.produtoRepository.listarProdutos();
         }
 
         @Put ()

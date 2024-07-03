@@ -2,13 +2,14 @@
 // eslint-disable-next-line prettier/prettier
 /* eslint-disable prettier/prettier */
 import { Body, Controller, Get, Post } from "@nestjs/common";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { usuarioRepository } from "./usuario.repository";
 import { CriaUsuarioDTO } from "./Criausuario.dto";
 
 @Controller('/usuarios')
 export class UsuarioController{
 
-    private  usuarioRepository = new usuarioRepository;
+   constructor(private usuarioRepository: usuarioRepository){}
 
    @Post() 
    async criaUsuario(@Body() dadosDoUsuario : CriaUsuarioDTO){

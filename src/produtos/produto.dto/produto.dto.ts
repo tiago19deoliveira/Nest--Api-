@@ -1,10 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { Type } from "class-transformer";
-import { IsArray, IsNotEmpty, IsNumber, IsString, IsUrl, MaxLength, Min, ValidateNested } from "class-validator";
+import { IsArray, IsNotEmpty, IsNumber, IsString, IsUUID, IsUrl, MaxLength, Min, ValidateNested } from "class-validator";
 
 /* eslint-disable prettier/prettier */
 export class produtoDTO {
 
+    @IsUUID(undefined,{ message: 'ID de usuário inválido'})
+    usuarioId: string;
+    
     @IsNotEmpty({message:'o nome não pode ser vazio'})
     readonly nome:string;
 
